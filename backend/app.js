@@ -5,7 +5,7 @@ import { dbConnection } from "./database/dbConnection.js";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import messageRouter from "./router/messageRouter.js"
-
+import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 const app =express();
 config({path: "./config/config.env"})
 
@@ -26,4 +26,6 @@ app.use(fileUpload({
 app.use("/api/v1/message", messageRouter);
 dbConnection();
 
+
+app.use(errorMiddleware);
 export default app;
