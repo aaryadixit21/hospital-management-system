@@ -5,7 +5,7 @@ import { dbConnection } from "./database/dbConnection.js";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import messageRouter from "./router/messageRouter.js"
-import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import { errorMiddleware } from "./middlewares/error.js";
 const app =express();
 config({path: "./config/config.env"})
 
