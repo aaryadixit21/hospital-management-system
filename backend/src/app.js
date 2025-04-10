@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import fileUpload from "express-fileupload"
 
 const app = express();
 
@@ -21,6 +22,24 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-app.use(fileUpload)
+app.use(
+    fileUpload({
+      useTempFiles: true,
+      tempFileDir: "/tmp/", // or any temp directory
+      limits: { fileSize: 10 * 1024 * 1024 }, // Optional: 10 MB file size limit
+      abortOnLimit: true,
+      safeFileNames: true,
+      preserveExtension: true,
+    })
+  );
+
+
+
+
+import messageRouter from "./router/message.router.js";
+import userRouter from "./router/user.router.js";
+
+app.use("/api/v1/message", messageRouter)
+app.use("/api/v1/user", userRouter)
 
 export {app}
