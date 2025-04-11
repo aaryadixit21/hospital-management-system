@@ -38,8 +38,10 @@ app.use(
 
 import messageRouter from "./router/message.router.js";
 import userRouter from "./router/user.router.js";
+import appointmentRouter from "./router/appointment.router.js";
 
 app.use("/api/v1/message", messageRouter)
 app.use("/api/v1/user", userRouter)
+app.use("/api/v1/appointment", appointmentRouter)
 
 export {app}
