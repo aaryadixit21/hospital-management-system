@@ -6,6 +6,8 @@ import { Appointment } from "../models/appointment.model.js";
 
 
 export const postAppointment = asyncHandler(async(req, res) => {
+    console.log("Incoming request body:", req.body);
+
     const {
         firstName,
         lastName,
@@ -21,7 +23,8 @@ export const postAppointment = asyncHandler(async(req, res) => {
         address
     } = req.body;
 
-    const requiredFields = [firstName,
+    const requiredFields = [
+        firstName,
         lastName,
         email,
         phone,
@@ -31,13 +34,18 @@ export const postAppointment = asyncHandler(async(req, res) => {
         department,
         doctor_firstName,
         doctor_lastName,
-        hasVisited,
-        address];
-    
-    
-    if (requiredFields.some((field) => !field || (typeof field === "string" && field.trim() === ""))) {
+        address
+      ];
+      
+      // Check for empty strings or missing values (excluding booleans like hasVisited)
+      if (
+        requiredFields.some(
+          (field) => field === undefined || field === null || (typeof field === "string" && field.trim() === "")
+        ) || typeof hasVisited !== "boolean"
+      ) {
         throw new ApiError(400, "all fields are required");
-    }
+      }
+      
 
     const isConflict = await User.find({
         firstName: doctor_firstName,

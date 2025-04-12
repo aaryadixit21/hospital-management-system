@@ -125,7 +125,7 @@ const addNewAdmin = asyncHandler(async(req, res) => {
 })
 
 const getAllDoctors = asyncHandler(async(req, res) => {
-    const doctors = await User.find({role: "Doctor"});
+    const doctors = await User.find({role: "doctor"});
     res.status(200).json({
         success: true,
         doctors

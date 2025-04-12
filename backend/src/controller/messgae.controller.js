@@ -15,7 +15,7 @@ const sendMessage = asyncHandler(async (req, res) => {
 
     const recievedMessage = await Message.create({firstName, lastName, email, phone, message});
 
-    return res.status(201).json(new ApiResponse(200, recievedMessage, "message sent successfully"))
+    return res.status(201).json(new ApiResponse(201, recievedMessage, "message sent successfully"));
 })
 
 const getAllMessages = asyncHandler(async(req, res) => {

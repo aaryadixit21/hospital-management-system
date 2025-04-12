@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useContext } from "react";
+import Hero from "../components/Hero";
+import Biography from "../components/Biography";
+import MessageForm from "../components/MessageForm";
+import Departments from "../components/Departments";
 
-function Home() {
+const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <Hero
+        title={
+          "Welcome to Personal care Medical Institute | Your Trusted Healthcare Provider"
+        }
+        imageUrl={"/hero.png"}
+      />
+      <Biography imageUrl={"/about.png"} />
+      <Departments />
+      <MessageForm />
+    </>
+  );
+};
 
-export default Home
+export default Home;

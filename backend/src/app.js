@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
@@ -7,13 +10,16 @@ const app = express();
 
 //cors cookie-parser are middlewares
 //connected to frontend
+
+
 app.use(
-    cors({
-        origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
-        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-        credentials: true,
-    })
+  cors({
+    origin:'http://localhost:5173',
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
 );
+
 
 //to get cookies
 app.use(cookieParser());
@@ -32,6 +38,7 @@ app.use(
       preserveExtension: true,
     })
   );
+
 
 
 
