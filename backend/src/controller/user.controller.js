@@ -193,6 +193,9 @@ const logoutPatient = asyncHandler(async (req, res) => {
 })
 
 const addNewDoctor = asyncHandler(async(req, res, next) => {
+    console.log("Body", req.body);
+    console.log("Files", req.files);
+
     if(!req.files || Object.keys(req.files).length === 0) {
         throw new ApiError(400, "doctor avatar required")
     }
